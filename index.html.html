@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prasad Varagani — Senior AML/KYC Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f2ec;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --gold-dim: #7a6030;
+    --charcoal: #1a1a1a;
+    --mid: #3a3a3a;
+    --muted: #6b6b6b;
+    --rule: rgba(201,168,76,0.25);
+    --card-bg: #ffffff;
+    --card-border: rgba(201,168,76,0.18);
+    --nav-bg: rgba(245,242,236,0.92);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-brand {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .burger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+  .burger span { display: block; width: 22px; height: 1.5px; background: var(--mid); transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5vw 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(80px, 18vw, 240px);
+    color: rgba(201,168,76,0.055);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 9vw, 110px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--charcoal);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(13px, 1.5vw, 16px);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+  }
+
+  .hero-tagline {
+    max-width: 540px;
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s ease forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.1s ease forwards;
+  }
+
+  .btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid var(--gold);
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  .btn-gold { background: var(--gold); color: #fff; }
+  .btn-gold:hover { background: var(--gold-dim); border-color: var(--gold-dim); }
+  .btn-outline { background: transparent; color: var(--gold-dim); }
+  .btn-outline:hover { background: var(--gold); color: #fff; }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 100px 5vw;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 300;
+    color: var(--charcoal);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--charcoal); color: var(--paper); }
+  #about .section-title { color: var(--paper); }
+  #about .section-num { color: var(--gold); }
+  #about .section-rule { background: rgba(201,168,76,0.2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-summary {
+    font-size: clamp(17px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(245,242,236,0.85);
+  }
+
+  .about-summary strong {
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 30px; height: 2px;
+    background: var(--gold);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,0.5);
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-group {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .skill-group:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.12);
+  }
+
+  .skill-group-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .skill-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    margin: 4px 4px 4px 0;
+    border: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .skill-tag:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+  .skill-bar-row { margin-bottom: 1rem; }
+  .skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: var(--mid);
+  }
+
+  .skill-bar-label span:last-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold-dim);
+  }
+
+  .skill-bar-track {
+    height: 2px;
+    background: rgba(201,168,76,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: #faf8f3; }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+    padding-left: 2rem;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 8px;
+    width: 8px; height: 8px;
+    border: 1.5px solid var(--gold);
+    background: var(--paper);
+    transform: translateX(-50%);
+    transition: background 0.2s;
+  }
+
+  .timeline-item:hover .timeline-dot { background: var(--gold); }
+
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.2;
+  }
+
+  .timeline-company {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .timeline-bullets li {
+    font-size: 16px;
+    color: var(--mid);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  #achievements { background: var(--charcoal); }
+  #achievements .section-title { color: var(--paper); }
+  #achievements .section-num { color: var(--gold); }
+  #achievements .section-rule { background: rgba(201,168,76,0.2); }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+
+  .achievement-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .achievement-card:hover::after { transform: scaleX(1); }
+  .achievement-card:hover { border-color: rgba(201,168,76,0.45); }
+
+  .achievement-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-text {
+    font-size: 16px;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.6;
+  }
+
+  /* ─── EXPERTISE ─── */
+  .expertise-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .expertise-table tr {
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+
+  .expertise-table tr:hover { background: rgba(201,168,76,0.04); }
+
+  .expertise-table td {
+    padding: 1rem 0.5rem;
+    font-size: 16px;
+    vertical-align: top;
+  }
+
+  .expertise-table td:first-child {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    width: 220px;
+    padding-right: 2rem;
+    white-space: nowrap;
+  }
+
+  .expertise-table td:last-child { color: var(--mid); }
+
+  /* ─── EDUCATION ─── */
+  #education { background: #faf8f3; }
+
+  .edu-card {
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    padding: 2.5rem;
+    max-width: 720px;
+    position: relative;
+    margin-bottom: 2rem;
+    transition: transform 0.2s;
+  }
+
+  .edu-card:hover { transform: translateY(-3px); }
+
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 0.25rem;
+  }
+
+  .edu-school {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+
+  .cert-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cert-list li {
+    font-size: 15px;
+    color: var(--mid);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .cert-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    font-size: 7px;
+    color: var(--gold);
+    top: 5px;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--ink); }
+  #contact .section-title { color: var(--paper); }
+  #contact .section-num { color: var(--gold); }
+  #contact .section-rule { background: rgba(201,168,76,0.18); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-text {
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 300;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.6;
+  }
+
+  .contact-text em { color: var(--gold-light); font-style: italic; }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    text-decoration: none;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--paper);
+    transition: border-color 0.25s, background 0.25s;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .contact-link:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .contact-link-icon {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-link-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+  }
+
+  .contact-link-value {
+    font-size: 13px;
+    color: rgba(245,242,236,0.8);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(245,242,236,0.3);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--nav-bg); border-bottom: 1px solid var(--rule); padding: 1.5rem 5vw; gap: 1.2rem; }
+    .nav-links.open { display: flex; }
+    .burger { display: flex; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .timeline { padding-left: 1.5rem; }
+    .timeline-item { padding-left: 1.5rem; }
+    .expertise-table td:first-child { width: 140px; white-space: normal; font-size: 10px; }
+    section { padding: 70px 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Prasad Varagani</span>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text" aria-hidden="true">AML</div>
+  <div class="hero-eyebrow">Financial Crime & Compliance Specialist</div>
+  <h1 class="hero-name">Prasad <em>Varagani</em></h1>
+  <div class="hero-rule"></div>
+  <div class="hero-title">Senior Analyst · AML / KYC Operations</div>
+  <p class="hero-tagline">Protecting financial systems through rigorous compliance, forensic analysis & regulatory expertise.</p>
+  <div class="hero-cta">
+    <a href="#experience" class="btn btn-gold">View Experience</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="about-grid">
+    <p class="about-summary reveal">
+      Results-driven <strong>Senior Analyst</strong> with <strong>3.3 years of progressive experience</strong> in end-to-end financial crime operations across <strong>Transaction Monitoring, KYC Validation, AML, PEP Reviews, ODD Reviews</strong> and <strong>Payment Screening</strong>. Deeply knowledgeable in global regulatory frameworks including <strong>AMLD, OFAC, FATF</strong> and <strong>US / EU / UK / HMT regulations</strong>. Proven ability to conduct risk assessments and drive full regulatory compliance at institutional scale.
+    </p>
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num">3.3+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Global Institutions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Error Rate Reduction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">25%</div>
+        <div class="stat-label">Faster KYC Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="skills-container">
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Core AML Competencies</div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label"><span>Anti-Money Laundering</span><span>Expert</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label"><span>Transaction Monitoring</span><span>Expert</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label"><span>KYC Validation</span><span>Expert</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label"><span>STR / SAR Filing</span><span>Advanced</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-bar-row">
+        <div class="skill-bar-label"><span>PEP & ODD Reviews</span><span>Advanced</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="87"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Regulatory Frameworks</div>
+      <span class="skill-tag">AMLD 4th / 5th / 6th</span>
+      <span class="skill-tag">OFAC</span>
+      <span class="skill-tag">FATF 40 Recommendations</span>
+      <span class="skill-tag">US BSA</span>
+      <span class="skill-tag">HMT</span>
+      <span class="skill-tag">UN Sanctions</span>
+      <span class="skill-tag">Wolfsberg Principles</span>
+      <span class="skill-tag">EU AML Directives</span>
+      <span class="skill-tag">UK Regulations</span>
+    </div>
+
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Operations & Tools</div>
+      <span class="skill-tag">Payment Screening</span>
+      <span class="skill-tag">Quality Assurance</span>
+      <span class="skill-tag">Risk Assessment</span>
+      <span class="skill-tag">Audit & Control Review</span>
+      <span class="skill-tag">Financial Crime Controls</span>
+      <span class="skill-tag">Excel (Advanced)</span>
+      <span class="skill-tag">Pivot Tables</span>
+      <span class="skill-tag">Compliance Dashboards</span>
+      <span class="skill-tag">SWIFT MT540–543</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Jun 2022 – Jun 2023</div>
+      <div class="timeline-role">Senior Analyst</div>
+      <div class="timeline-company">Northern Trust — Bengaluru, Karnataka</div>
+      <ul class="timeline-bullets">
+        <li>Built and monitored end-to-end Quality Assurance processes for financial crime operations covering Transaction Monitoring, STR/SAR, ODD Reviews, KYC Validation, Payment Screening and Monitoring.</li>
+        <li>Led calibration forums with the 1st Line QC Team to drive consistency, accuracy, and compliance across all financial crime functions.</li>
+        <li>Assessed and validated financial crime controls ensuring alignment with AMLD, OFAC, FATF and internal policy standards.</li>
+        <li>Provided training and support to operational staff on financial crime prevention, emerging typologies, and regulatory developments.</li>
+        <li>Leveraged advanced Excel data analytics to detect suspicious activity patterns and produce QA performance dashboards for senior management.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Dec 2021 – Feb 2022</div>
+      <div class="timeline-role">Securities Settlement Officer</div>
+      <div class="timeline-company">Standard Chartered GBS — Bengaluru, Karnataka</div>
+      <ul class="timeline-bullets">
+        <li>Processed end-to-end securities settlement instructions using SWIFT MT540, MT541, MT542, and MT543 message types for free-of-payment and delivery-versus-payment transactions.</li>
+        <li>Handled MT540/MT541 receipt instructions and MT542/MT543 delivery instructions across custodian and counterparty accounts.</li>
+        <li>Investigated and resolved settlement fails and mismatches, ensuring T+2 settlement compliance via liaison with counterparties and internal desks.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Oct 2019 – Oct 2021</div>
+      <div class="timeline-role">AML & KYC Analyst</div>
+      <div class="timeline-company">State Street HCL — Chennai, Tamil Nadu</div>
+      <ul class="timeline-bullets">
+        <li>Identified and investigated potential financial crimes including fraud and money laundering by analysing complex financial data and customer behaviour patterns.</li>
+        <li>Performed in-depth KYC validation for new and existing clients, verifying identity, beneficial ownership, and source of funds.</li>
+        <li>Executed Transaction Monitoring reviews, assessing flagged alerts against established typologies and regulatory thresholds.</li>
+        <li>Filed Suspicious Transaction Reports (STRs) and Suspicious Activity Reports (SARs) in accordance with US and international AML regulations.</li>
+        <li>Performed PEP screening and Ongoing Due Diligence (ODD) reviews for existing clients to identify changes in risk exposure.</li>
+        <li>Utilised Excel data analytics to analyse financial data, detect suspicious activities, and prepare detailed compliance reports.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Achievements</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="achievements-grid">
+    <div class="achievement-card reveal">
+      <div class="achievement-num">30%</div>
+      <p class="achievement-text">Designed and implemented a QA framework for Transaction Monitoring that reduced error rates within 6 months.</p>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-num">95%+</div>
+      <p class="achievement-text">Led Knowledge Transfer sessions between L1 and L2 teams, achieving over 95% alignment on case decisions.</p>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-num">SARs</div>
+      <p class="achievement-text">Identified and escalated a complex money laundering typology leading to multiple SAR filings and commendation from senior compliance leadership.</p>
+    </div>
+    <div class="achievement-card reveal">
+      <div class="achievement-num">25%</div>
+      <p class="achievement-text">Streamlined KYC Validation processes using Excel analytics, reducing review turnaround time significantly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGULATORY EXPERTISE -->
+<section id="expertise">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Regulatory Expertise</h2>
+    <div class="section-rule"></div>
+  </div>
+  <table class="expertise-table reveal">
+    <tbody>
+      <tr>
+        <td>AML Regulations</td>
+        <td>US Bank Secrecy Act (BSA), EU Anti-Money Laundering Directives (AMLD 4th, 5th, 6th)</td>
+      </tr>
+      <tr>
+        <td>Sanctions Regimes</td>
+        <td>OFAC (Office of Foreign Assets Control), HMT (Her Majesty's Treasury), UN Sanctions</td>
+      </tr>
+      <tr>
+        <td>International Standards</td>
+        <td>FATF 40 Recommendations, Wolfsberg Principles</td>
+      </tr>
+      <tr>
+        <td>Operational Domains</td>
+        <td>Transaction Monitoring · KYC Validation · PEP Reviews · ODD Reviews · Payment Screening · STR/SAR Filing</td>
+      </tr>
+      <tr>
+        <td>QA Management</td>
+        <td>Quality Assurance Process Design · STR & SAR Drafting · Audit & Control Reviews</td>
+      </tr>
+      <tr>
+        <td>Data Tools</td>
+        <td>Microsoft Excel (Advanced) — Data Analytics, Pivot Tables, Dashboards, Compliance Reporting</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <div class="edu-card reveal">
+    <div class="edu-degree">Master of Business Administration <em style="font-style:italic;color:var(--gold-dim);font-size:20px;">(Finance)</em></div>
+    <div class="edu-school">JNTUK University · 2017 – 2019</div>
+    <ul class="cert-list">
+      <li>Fundamentals of Certified Anti-Money Laundering Specialist (CAMS)</li>
+      <li>Operational Analysis of Suspicious Transaction Reports (STR) — BASEL Committee</li>
+      <li>AML & Customer Verification Training</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="contact-grid">
+    <p class="contact-text reveal">
+      Open to <em>compliance roles, AML analyst positions,</em> and financial crime consulting opportunities worldwide.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:prasadvaragani2142@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div>
+          <span class="contact-link-label">Email</span>
+          <span class="contact-link-value">prasadvaragani2142@gmail.com</span>
+        </div>
+      </a>
+      <a href="tel:+918309277756" class="contact-link">
+        <div class="contact-link-icon">☏</div>
+        <div>
+          <span class="contact-link-label">Phone</span>
+          <span class="contact-link-value">+91 83092 77756</span>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/prasadvaragani" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        <div>
+          <span class="contact-link-label">LinkedIn</span>
+          <span class="contact-link-value">linkedin.com/in/prasadvaragani</span>
+        </div>
+      </a>
+      <div class="contact-link" style="cursor:default;">
+        <div class="contact-link-icon">📍</div>
+        <div>
+          <span class="contact-link-label">Location</span>
+          <span class="contact-link-value">Guntur, Andhra Pradesh, India</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Prasad Varagani</span>
+  <span>Senior Analyst · AML / KYC Operations</span>
+</footer>
+
+<script>
+  // Burger menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal, .timeline-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Skill bar animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-group').forEach(g => barObserver.observe(g));
+
+  // Nav active link
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
